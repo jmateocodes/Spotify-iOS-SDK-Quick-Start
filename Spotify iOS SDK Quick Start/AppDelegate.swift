@@ -8,8 +8,10 @@
 
 import UIKit
 
+// Added 'SPTSessionManagerDelegate' to handle authorization
+
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, SPTSessionManagerDelegate {
 
     var window: UIWindow?
 
@@ -40,7 +42,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
-
+    
+    // Implemented the 3 methods below to handle auth.
+    func sessionManager(manager: SPTSessionManager, didInitiate session: STPSession) {
+        print("success", session)
+    }
+    
+    func sessionManager(manager: SPTSessionManager, didFailWith error: Error) {
+        print("fail", error)
+    }
+    
+    func sessionManager(manager: SPTSessionManager, didRenew session: SPTSession) {
+        print("renewed", session)
+    }
+    
+    // Instantiate SPTConfiguration
+    // Define CLient ID, Redirect URI, and initiate the SDK
+    let SpotifyClientID = "f29ed6af2017417583694445c09cfd82"
+    let SpotifyRedirectURL = URL(string: "spotify-ios-quick-start://spotify-login-callback")!
+    
+    lazy var configuration = SPTConfiguration(clientID: SpotifyClientID,
+                                              redirectURL: SpotifyRedirectURL)
+    
 }
-

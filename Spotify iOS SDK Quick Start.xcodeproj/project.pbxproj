@@ -14,6 +14,7 @@
 		18F0D05B22CCA4F7004687DC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18F0D05922CCA4F7004687DC /* LaunchScreen.storyboard */; };
 		18F0D06622CCA4F7004687DC /* Spotify_iOS_SDK_Quick_StartTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F0D06522CCA4F7004687DC /* Spotify_iOS_SDK_Quick_StartTests.swift */; };
 		18F0D07122CCA4F7004687DC /* Spotify_iOS_SDK_Quick_StartUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F0D07022CCA4F7004687DC /* Spotify_iOS_SDK_Quick_StartUITests.swift */; };
+		18F0D07F22CCA762004687DC /* Spotify_iOS_SDK_Quick_Start-Bridging-Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F0D07E22CCA762004687DC /* Spotify_iOS_SDK_Quick_Start-Bridging-Header.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,8 @@
 		18F0D06C22CCA4F7004687DC /* Spotify iOS SDK Quick StartUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Spotify iOS SDK Quick StartUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		18F0D07022CCA4F7004687DC /* Spotify_iOS_SDK_Quick_StartUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spotify_iOS_SDK_Quick_StartUITests.swift; sourceTree = "<group>"; };
 		18F0D07222CCA4F7004687DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		18F0D07E22CCA762004687DC /* Spotify_iOS_SDK_Quick_Start-Bridging-Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Spotify_iOS_SDK_Quick_Start-Bridging-Header.swift"; sourceTree = "<group>"; };
+		18F0D08122CCA83B004687DC /* Spotify iOS SDK Quick Start-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Spotify iOS SDK Quick Start-Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,10 +80,12 @@
 		18F0D04422CCA4F6004687DC = {
 			isa = PBXGroup;
 			children = (
+				18F0D07E22CCA762004687DC /* Spotify_iOS_SDK_Quick_Start-Bridging-Header.swift */,
 				18F0D04F22CCA4F6004687DC /* Spotify iOS SDK Quick Start */,
 				18F0D06422CCA4F7004687DC /* Spotify iOS SDK Quick StartTests */,
 				18F0D06F22CCA4F7004687DC /* Spotify iOS SDK Quick StartUITests */,
 				18F0D04E22CCA4F6004687DC /* Products */,
+				18F0D08122CCA83B004687DC /* Spotify iOS SDK Quick Start-Bridging-Header.h */,
 			);
 			sourceTree = "<group>";
 		};
@@ -193,6 +198,7 @@
 				TargetAttributes = {
 					18F0D04C22CCA4F6004687DC = {
 						CreatedOnToolsVersion = 10.2.1;
+						LastSwiftMigration = 1020;
 					};
 					18F0D06022CCA4F7004687DC = {
 						CreatedOnToolsVersion = 10.2.1;
@@ -258,6 +264,7 @@
 			files = (
 				18F0D05322CCA4F6004687DC /* ViewController.swift in Sources */,
 				18F0D05122CCA4F6004687DC /* AppDelegate.swift in Sources */,
+				18F0D07F22CCA762004687DC /* Spotify_iOS_SDK_Quick_Start-Bridging-Header.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,15 +439,20 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6D5953SK3D;
 				INFOPLIST_FILE = "Spotify iOS SDK Quick Start/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "Johanny.Spotify-iOS-SDK-Quick-Start";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Spotify iOS SDK Quick Start-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -450,15 +462,19 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6D5953SK3D;
 				INFOPLIST_FILE = "Spotify iOS SDK Quick Start/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "Johanny.Spotify-iOS-SDK-Quick-Start";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Spotify iOS SDK Quick Start-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
