@@ -44,6 +44,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SPTSessionManagerDelegate
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
+    
+    
     // Implemented the 3 methods below to handle auth.
     func sessionManager(manager: SPTSessionManager, didInitiate session: STPSession) {
         print("success", session)
@@ -56,6 +58,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SPTSessionManagerDelegate
     func sessionManager(manager: SPTSessionManager, didRenew session: SPTSession) {
         print("renewed", session)
     }
+    
     
     // Instantiate SPTConfiguration
     // Define CLient ID, Redirect URI, and initiate the SDK
@@ -82,22 +85,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SPTSessionManagerDelegate
         return manager
     } ()
     
+    
     // SPTConfiguration & SPTSession Manager are both configured
     // Invoke the authorization screen
     let requestedScopes: SPTScope = [.appRemoteControl]
     self.sessionManager.initiateSession(with: requestedScopes, options: .default)
     
+    
     // configure authorization callback
     // notifies session manager after the user returns to the app
-    func application(_app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
-            self.sessionManager.application(app, open: url, options: options)
-                return true
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        self.sessionManager.application(app, open: url, options: options)
+        return true
     }
 
     
     // implement methods for app remote play back
-    func appRemoteDidEstablishConnection(_appremote: SPTAppRemote) {
+    func appRemoteDidEstablishConnection(_ appRemote: SPTAppRemote) {
         print("connected")
     }
     
+    func
 }

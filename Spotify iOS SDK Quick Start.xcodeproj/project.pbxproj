@@ -34,15 +34,15 @@
 
 /* Begin PBXFileReference section */
 		18285CC222CD75CF0088941D /* SpotifyiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyiOS.framework; sourceTree = "<group>"; };
-		18F0D04D22CCA4F6004687DC /* Spotify iOS SDK Quick Start.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Spotify iOS SDK Quick Start.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		18F0D04D22CCA4F6004687DC /* Spotify iOS SDK Quick Start */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = "Spotify iOS SDK Quick Start"; path = "../../../../../../../../Documents/Spotify iOS SDK Quick Start/Spotify iOS SDK Quick Start"; sourceTree = BUILT_PRODUCTS_DIR; };
 		18F0D05022CCA4F6004687DC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AppDelegate.swift; sourceTree = "<group>"; usesTabs = 0; };
 		18F0D05222CCA4F6004687DC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		18F0D05522CCA4F6004687DC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		18F0D05722CCA4F7004687DC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		18F0D05A22CCA4F7004687DC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		18F0D05C22CCA4F7004687DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		18F0D06122CCA4F7004687DC /* Spotify iOS SDK Quick StartTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Spotify iOS SDK Quick StartTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		18F0D06C22CCA4F7004687DC /* Spotify iOS SDK Quick StartUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Spotify iOS SDK Quick StartUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		18F0D05C22CCA4F7004687DC /* Info.plist */ = {isa = PBXFileReference; explicitFileType = text.xml; path = Info.plist; sourceTree = "<group>"; };
+		18F0D06122CCA4F7004687DC /* Spotify iOS SDK Quick StartTests */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "Spotify iOS SDK Quick StartTests"; path = "../../../../../../../../Documents/Spotify iOS SDK Quick Start/Spotify iOS SDK Quick StartTests"; sourceTree = BUILT_PRODUCTS_DIR; };
+		18F0D06C22CCA4F7004687DC /* Spotify iOS SDK Quick StartUITests */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "Spotify iOS SDK Quick StartUITests"; path = "../../../../../../../../Documents/Spotify iOS SDK Quick Start/Spotify iOS SDK Quick StartUITests"; sourceTree = BUILT_PRODUCTS_DIR; };
 		18F0D08122CCA83B004687DC /* Spotify iOS SDK Quick Start-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Spotify iOS SDK Quick Start-Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -92,9 +92,9 @@
 		18F0D04E22CCA4F6004687DC /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				18F0D04D22CCA4F6004687DC /* Spotify iOS SDK Quick Start.app */,
-				18F0D06122CCA4F7004687DC /* Spotify iOS SDK Quick StartTests.xctest */,
-				18F0D06C22CCA4F7004687DC /* Spotify iOS SDK Quick StartUITests.xctest */,
+				18F0D04D22CCA4F6004687DC /* Spotify iOS SDK Quick Start */,
+				18F0D06122CCA4F7004687DC /* Spotify iOS SDK Quick StartTests */,
+				18F0D06C22CCA4F7004687DC /* Spotify iOS SDK Quick StartUITests */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -130,7 +130,7 @@
 			);
 			name = "Spotify iOS SDK Quick Start";
 			productName = "Spotify iOS SDK Quick Start";
-			productReference = 18F0D04D22CCA4F6004687DC /* Spotify iOS SDK Quick Start.app */;
+			productReference = 18F0D04D22CCA4F6004687DC /* Spotify iOS SDK Quick Start */;
 			productType = "com.apple.product-type.application";
 		};
 		18F0D06022CCA4F7004687DC /* Spotify iOS SDK Quick StartTests */ = {
@@ -148,7 +148,7 @@
 			);
 			name = "Spotify iOS SDK Quick StartTests";
 			productName = "Spotify iOS SDK Quick StartTests";
-			productReference = 18F0D06122CCA4F7004687DC /* Spotify iOS SDK Quick StartTests.xctest */;
+			productReference = 18F0D06122CCA4F7004687DC /* Spotify iOS SDK Quick StartTests */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		18F0D06B22CCA4F7004687DC /* Spotify iOS SDK Quick StartUITests */ = {
@@ -166,7 +166,7 @@
 			);
 			name = "Spotify iOS SDK Quick StartUITests";
 			productName = "Spotify iOS SDK Quick StartUITests";
-			productReference = 18F0D06C22CCA4F7004687DC /* Spotify iOS SDK Quick StartUITests.xctest */;
+			productReference = 18F0D06C22CCA4F7004687DC /* Spotify iOS SDK Quick StartUITests */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
