@@ -29,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SPTSessionManagerDelegate
     // Set up the token swap (app deployed on Heroku)
     lazy var sessionManager: SPTSessionManager = {
         if let tokenSwapURL = URL(string: "https://spotify-ios-sdk-quick-start.herokuapp.com/api/token"),
-            let tokenRefreshURL = URL(string: "https://spotify-ios-sdk-quick-start.herokuapp/api/refresh_token") {
+            let tokenRefreshURL = URL(string: "https://spotify-ios-sdk-quick-start.herokuapp.com/api/refresh_token") {
            
             self.configuration.tokenSwapURL = tokenSwapURL
             self.configuration.tokenRefreshURL = tokenRefreshURL

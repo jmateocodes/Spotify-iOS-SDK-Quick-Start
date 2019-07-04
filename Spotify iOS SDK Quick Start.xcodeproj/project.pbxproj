@@ -8,11 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		18285CC322CD75CF0088941D /* SpotifyiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18285CC222CD75CF0088941D /* SpotifyiOS.framework */; };
+		182DE08822CDAE9D00E8E0CB /* Spotify_iOS_SDK_Quick_Start.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182DE08722CDAE9D00E8E0CB /* Spotify_iOS_SDK_Quick_Start.swift */; };
 		18F0D05122CCA4F6004687DC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F0D05022CCA4F6004687DC /* AppDelegate.swift */; };
 		18F0D05322CCA4F6004687DC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F0D05222CCA4F6004687DC /* ViewController.swift */; };
-		18F0D05622CCA4F6004687DC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18F0D05422CCA4F6004687DC /* Main.storyboard */; };
 		18F0D05822CCA4F7004687DC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18F0D05722CCA4F7004687DC /* Assets.xcassets */; };
-		18F0D05B22CCA4F7004687DC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18F0D05922CCA4F7004687DC /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,12 +33,11 @@
 
 /* Begin PBXFileReference section */
 		18285CC222CD75CF0088941D /* SpotifyiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyiOS.framework; sourceTree = "<group>"; };
+		182DE08722CDAE9D00E8E0CB /* Spotify_iOS_SDK_Quick_Start.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spotify_iOS_SDK_Quick_Start.swift; sourceTree = "<group>"; };
 		18F0D04D22CCA4F6004687DC /* Spotify iOS SDK Quick Start */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = "Spotify iOS SDK Quick Start"; path = "../../../../../../../../Documents/Spotify iOS SDK Quick Start/Spotify iOS SDK Quick Start"; sourceTree = BUILT_PRODUCTS_DIR; };
 		18F0D05022CCA4F6004687DC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AppDelegate.swift; sourceTree = "<group>"; usesTabs = 0; };
 		18F0D05222CCA4F6004687DC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		18F0D05522CCA4F6004687DC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		18F0D05722CCA4F7004687DC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		18F0D05A22CCA4F7004687DC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		18F0D05C22CCA4F7004687DC /* Info.plist */ = {isa = PBXFileReference; explicitFileType = text.xml; path = Info.plist; sourceTree = "<group>"; };
 		18F0D06122CCA4F7004687DC /* Spotify iOS SDK Quick StartTests */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "Spotify iOS SDK Quick StartTests"; path = "../../../../../../../../Documents/Spotify iOS SDK Quick Start/Spotify iOS SDK Quick StartTests"; sourceTree = BUILT_PRODUCTS_DIR; };
 		18F0D06C22CCA4F7004687DC /* Spotify iOS SDK Quick StartUITests */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "Spotify iOS SDK Quick StartUITests"; path = "../../../../../../../../Documents/Spotify iOS SDK Quick Start/Spotify iOS SDK Quick StartUITests"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -78,6 +76,7 @@
 				18285CC222CD75CF0088941D /* SpotifyiOS.framework */,
 			);
 			name = Frameworks;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		18F0D04422CCA4F6004687DC = {
@@ -85,7 +84,6 @@
 			children = (
 				18F0D04F22CCA4F6004687DC /* Spotify iOS SDK Quick Start */,
 				18F0D04E22CCA4F6004687DC /* Products */,
-				18285CBF22CD743D0088941D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -102,13 +100,13 @@
 		18F0D04F22CCA4F6004687DC /* Spotify iOS SDK Quick Start */ = {
 			isa = PBXGroup;
 			children = (
+				18285CBF22CD743D0088941D /* Frameworks */,
 				18F0D08122CCA83B004687DC /* Spotify iOS SDK Quick Start-Bridging-Header.h */,
 				18F0D05022CCA4F6004687DC /* AppDelegate.swift */,
 				18F0D05222CCA4F6004687DC /* ViewController.swift */,
-				18F0D05422CCA4F6004687DC /* Main.storyboard */,
 				18F0D05722CCA4F7004687DC /* Assets.xcassets */,
-				18F0D05922CCA4F7004687DC /* LaunchScreen.storyboard */,
 				18F0D05C22CCA4F7004687DC /* Info.plist */,
+				182DE08722CDAE9D00E8E0CB /* Spotify_iOS_SDK_Quick_Start.swift */,
 			);
 			path = "Spotify iOS SDK Quick Start";
 			sourceTree = "<group>";
@@ -218,9 +216,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18F0D05B22CCA4F7004687DC /* LaunchScreen.storyboard in Resources */,
 				18F0D05822CCA4F7004687DC /* Assets.xcassets in Resources */,
-				18F0D05622CCA4F6004687DC /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -245,6 +241,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				182DE08822CDAE9D00E8E0CB /* Spotify_iOS_SDK_Quick_Start.swift in Sources */,
 				18F0D05322CCA4F6004687DC /* ViewController.swift in Sources */,
 				18F0D05122CCA4F6004687DC /* AppDelegate.swift in Sources */,
 			);
@@ -278,25 +275,6 @@
 			targetProxy = 18F0D06D22CCA4F7004687DC /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		18F0D05422CCA4F6004687DC /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				18F0D05522CCA4F6004687DC /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		18F0D05922CCA4F7004687DC /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				18F0D05A22CCA4F7004687DC /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		18F0D07322CCA4F7004687DC /* Debug */ = {
