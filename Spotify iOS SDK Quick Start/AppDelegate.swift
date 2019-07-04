@@ -9,9 +9,10 @@
 import UIKit
 
 // Added 'SPTSessionManagerDelegate' to handle authorization
+// Added 'SPTAppRemote...' to allow connections & playback states
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, SPTSessionManagerDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, SPTSessionManagerDelegate, SPTAppRemoteDelegate, SPTAppRemotePlayerStateDelegate {
 
     var window: UIWindow?
 
@@ -63,5 +64,40 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SPTSessionManagerDelegate
     
     lazy var configuration = SPTConfiguration(clientID: SpotifyClientID,
                                               redirectURL: SpotifyRedirectURL)
+    
+    
+    // Set up the token swap (app deployed on Heroku)
+    lazy var sessionManager: SPTSessionManager = {
+        if let tokenSwapURL = URL(string: "https://spotify-ios-sdk-quick-start.herokuapp.com/api/token"),
+            let tokenRefreshURL = URL(string: "https://spotify-ios-sdk-quick-start.herokuapp/api/refresh_token") {
+            self.configuration.tokenSwapURL = tokenSwapURL
+            self.configuration.tokenRefreshURL = tokenRefreshURL
+            
+            // playURI allows iOS to wake the Spotify app to play music
+            // an empty playURI plays the last song, else it will play the requested track's URI
+            self.configuration.playURI = ""
+        }
+        
+        let manager = SPTSessionManager(configuration: self.configuration, delegate: self)
+        return manager
+    } ()
+    
+    // SPTConfiguration & SPTSession Manager are both configured
+    // Invoke the authorization screen
+    let requestedScopes: SPTScope = [.appRemoteControl]
+    self.sessionManager.initiateSession(with: requestedScopes, options: .default)
+    
+    // configure authorization callback
+    // notifies session manager after the user returns to the app
+    func application(_app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+            self.sessionManager.application(app, open: url, options: options)
+                return true
+    }
+
+    
+    // implement methods for app remote play back
+    func appRemoteDidEstablishConnection(_appremote: SPTAppRemote) {
+        print("connected")
+    }
     
 }
