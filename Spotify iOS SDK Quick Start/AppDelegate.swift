@@ -15,13 +15,57 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate, SPTSessionManagerDelegate, SPTAppRemoteDelegate, SPTAppRemotePlayerStateDelegate {
 
     var window: UIWindow?
+    
+    
+    // Instantiate SPTConfiguration
+    // Define CLient ID, Redirect URI, and initiate the SDK
+    let SpotifyClientID = "f29ed6af2017417583694445c09cfd82"
+    let SpotifyRedirectURL = URL(string: "spotify-ios-quick-start://spotify-login-callback")!
+    
+    lazy var configuration = SPTConfiguration(clientID: SpotifyClientID,
+                                              redirectURL: SpotifyRedirectURL)
+    
+    
+    // Set up the token swap (app deployed on Heroku)
+    lazy var sessionManager: SPTSessionManager = {
+        if let tokenSwapURL = URL(string: "https://spotify-ios-sdk-quick-start.herokuapp.com/api/token"),
+            let tokenRefreshURL = URL(string: "https://spotify-ios-sdk-quick-start.herokuapp/api/refresh_token") {
+           
+            self.configuration.tokenSwapURL = tokenSwapURL
+            self.configuration.tokenRefreshURL = tokenRefreshURL
+            
+            // playURI allows iOS to wake the Spotify app to play music
+            // an empty playURI plays the last song, else it will play the requested track's URI
+            self.configuration.playURI = ""
+        }
+        
+        let manager = SPTSessionManager(configuration: self.configuration, delegate: self)
+       
+        return manager
+    } ()
 
 
+    // initialize app remote
+    lazy var appRemote: SPTAppRemote = {
+        let appRemote = SPTAppRemote(configuration: configuration, logLevel: .debug)
+        appRemote.delegate = self
+        
+        return appRemote
+    }()
+    
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+
+        // SPTConfiguration & SPTSession Manager are both configured
+        // Invoke the authorization screen
+        let requestedScopes: SPTScope = [.appRemoteControl]
+        self.sessionManager.initiateSession(with: requestedScopes, options: .default)
+        
         return true
     }
 
+    
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
@@ -51,9 +95,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SPTSessionManagerDelegate
     }
     
     
+    // configure authorization callback
+    // notifies session manager after the user returns to the app
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+            self.sessionManager.application(app, open: url, options: options)
+        
+        return true
+    }
     
-    // Implemented the 3 methods below to handle auth.
+    // Handles authorization
     func sessionManager(manager: SPTSessionManager, didInitiate session: SPTSession) {
+        self.appRemote.connectionParameters.accessToken = session.accessToken
+        self.appRemote.connect()
         print("success", session)
     }
     func sessionManager(manager: SPTSessionManager, didFailWith error: Error) {
@@ -62,78 +115,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SPTSessionManagerDelegate
     func sessionManager(manager: SPTSessionManager, didRenew session: SPTSession) {
         print("renewed", session)
     }
-    
-    
-    // Instantiate SPTConfiguration
-    // Define CLient ID, Redirect URI, and initiate the SDK
-    let SpotifyClientID = "f29ed6af2017417583694445c09cfd82"
-    let SpotifyRedirectURL = URL(string: "spotify-ios-quick-start://spotify-login-callback")!
-    
-    lazy var configuration = SPTConfiguration(clientID: SpotifyClientID,
-                                              redirectURL: SpotifyRedirectURL)
-    
-    
-    // Set up the token swap (app deployed on Heroku)
-    lazy var sessionManager: SPTSessionManager = {
-        if let tokenSwapURL = URL(string: "https://spotify-ios-sdk-quick-start.herokuapp.com/api/token"),
-            let tokenRefreshURL = URL(string: "https://spotify-ios-sdk-quick-start.herokuapp/api/refresh_token") {
-            self.configuration.tokenSwapURL = tokenSwapURL
-            self.configuration.tokenRefreshURL = tokenRefreshURL
-            
-            // playURI allows iOS to wake the Spotify app to play music
-            // an empty playURI plays the last song, else it will play the requested track's URI
-            self.configuration.playURI = ""
-        }
-        
-        let manager = SPTSessionManager(configuration: self.configuration, delegate: self)
-        return manager
-    } ()
-    
-    
-    // SPTConfiguration & SPTSession Manager are both configured
-    // Invoke the authorization screen
-    let requestedScopes: SPTScope = [.appRemoteControl]
-    self.sessionManager.initiateSession(with: requestedScopes, options: .default)
-    
-    
-    // configure authorization callback
-    // notifies session manager after the user returns to the app
-    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
-        self.sessionManager.application(app, open: url, options: options)
-        return true
-    }
 
     
     // implement methods for app remote play back
     func appRemoteDidEstablishConnection(_ appRemote: SPTAppRemote) {
         print("connected")
-    }
-    func appRemote(_ appRemote: SPTAppRemote, didDisconnectWithError error: Error?) {
-        print("disconnected")
-    }
-    func appRemote(_ appRemote: SPTAppRemote, didFailConnectionAttemptWithError error: Error?) {
-        print("failed")
-    }
-    func playerStateDidChange(_ playerState: SPTAppRemotePlayerState) {
-        print("player state changed")
-    }
-    
-    
-    // initialize app remote
-    lazy var appRemote: SPTAppRemote = {
-        let appRemote = SPTAppRemote(configuration: self.configuration, logLevel: .debug)
-        appRemote.delegate = self
-        return appRemote
-    }()
-    
-    
-    // connect to Spotify after successful authentication & invokes appRemoteDidEstablishConnection
-    func sessionManager(manager: SPTSessionManager, didInitiate session: SPTSession) {
-        self.appRemote.connectionParameters.accessToken = session.accessToken
-        self.appRemote.connect()
-    }
-    
-    func appRemoteDidEstablishConnection(_ appRemote: SPTAppRemote){
+        
         self.appRemote.playerAPI?.delegate = self
         self.appRemote.playerAPI?.subscribe(toPlayerState: { (result, error) in
             if let error = error {
@@ -141,11 +128,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SPTSessionManagerDelegate
             }
         })
     }
+    func appRemote(_ appRemote: SPTAppRemote, didDisconnectWithError error: Error?) {
+        print("disconnected")
+    }
+    func appRemote(_ appRemote: SPTAppRemote, didFailConnectionAttemptWithError error: Error?) {
+        print("failed")
+    }
     
     
-    // log output
+    // log state of player output
     func playerStateDidChange(_ playerState: SPTAppRemotePlayerState) {
         debugPrint("Track name: %@", playerState.track.name)
+        
+        // print statements from Spotify's gist
+        print("player state changed")
+        print("isPaused", playerState.isPaused)
+        print("track.uri", playerState.track.uri)
+        print("track.name", playerState.track.name)
+        print("track.imageIdentifier", playerState.track.imageIdentifier)
+        print("track.artist.name", playerState.track.artist.name)
+        print("track.album.name", playerState.track.album.name)
+        print("track.isSaved", playerState.track.isSaved)
+        print("playbackSpeed", playerState.playbackSpeed)
+        print("playbackOptions.isShuffling", playerState.playbackOptions.isShuffling)
+        print("playbackOptions.repeatMode", playerState.playbackOptions.repeatMode.hashValue)
+        print("playbackPosition", playerState.playbackPosition)
     }
 
 }
